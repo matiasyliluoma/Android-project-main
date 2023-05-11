@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="#000280">
+
+
+
+    <Button
+        android:id="@+id/fetchKaikki"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get all users"
+        android:background="#000080"/>
+
+</LinearLayout>
