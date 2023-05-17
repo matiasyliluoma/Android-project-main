@@ -1,14 +1,13 @@
 package fi.tuni.userapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.VolleyLog.TAG
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.Volley
+import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
+import java.io.Serializable
 
 
 class MainActivity : AppCompatActivity() {
@@ -17,38 +16,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        val fetchButton : Button = findViewById(R.id.fetchKaikki)
+        val fetchButton : Button = findViewById(R.id.fetchAll)
+
 
 
         // button to test out fetching all the users of dummy json
         fetchButton.setOnClickListener() {
-            fetchUsers()
-        }
-    }
 
-    fun fetchUsers() {
-        httpConnect()
-    }
 
-    fun httpConnect() {
-// Volley httpclient to take make GET request on dummyjson.com on all users
-        val url = "https://dummyjson.com/users"
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.GET, url, null,
-            Response.Listener { response ->
-                val responseOf : String = "Response: %s".format(response.toString())
-                // Logs all the users
-                Log.d(TAG, "response: $responseOf")
-            },
-            // For possible errors
-            Response.ErrorListener { error ->
-                Log.d(TAG,"Error: ${error.networkResponse?.statusCode}, ${error.message}")
+            val httpResponse = HttpResponse(this)
+            //  Log.d("TAG", "yksi")
+
+            httpResponse.httpConnectAndFetchUsers { jsonResponse ->
+                //    Log.d("TAG", "kaksi")
+                val intent = Intent(this, SecondActivity::class.java)
+                intent.putExtra("jsonResponse", jsonResponse.toString())
+                startActivity(intent)
             }
-        )
-
-        // Volley httpclient's logic to RequestQueu
-        val requestQueue = Volley.newRequestQueue(this) // Creates a RequestQueue
-        requestQueue.add(jsonObjectRequest) // Adds the request to the queue
-        requestQueue.start() // Starts the queue
+        }
     }
 }
