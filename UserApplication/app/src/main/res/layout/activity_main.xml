@@ -9,6 +9,20 @@
     android:background="#fffafa">
 
 
+    <EditText
+        android:id="@+id/search_by_text"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:inputType="text"
+        android:textColor="#000000"/>
+
+    <Button
+        android:id="@+id/fetchOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search.."
+        android:textColor="#8b7765"
+        android:background="#8470ff"/>
 
     <Button
         android:id="@+id/fetchAll"
@@ -17,6 +31,7 @@
         android:text="Get all users"
         android:textColor="#8b7765"
         android:background="#8470ff"/>
+
 
 
 

@@ -1,37 +1,38 @@
 package fi.tuni.userapplication
 
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
-
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 class SecondActivity : AppCompatActivity() {
-    var listOfUsersView: TextView? = null
+   // private var listOfUsersView: TextView? = null
+    private var userRecyclerView: RecyclerView? = null
+    private var customAdapter: CustomAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
-        var listOfUsersView : TextView = findViewById(R.id.showUsersView)
+     //   listOfUsersView = findViewById(R.id.showUsersView)
+        userRecyclerView = findViewById(R.id.userRecyclerView)
+        userRecyclerView?.layoutManager = LinearLayoutManager(this)
 
+        val jsonResponse = intent?.getStringExtra("userList")
 
-        val jsonResponse = intent?.getStringExtra("jsonResponse")
         if (jsonResponse != null) {
-            val userList = UserList(jsonResponse)
-            showList(userList.users, listOfUsersView)
-            Log.d("TAG", "moro")
+            Log.d("TAG", "JSONI $jsonResponse")
+            val userList = UserList.fromJson(jsonResponse)
+            customAdapter = CustomAdapter(userList.users!!)
+            userRecyclerView?.adapter = customAdapter
+
+            Log.d("TAG", "JSONI $jsonResponse")
             // Use the userList or perform further JSON parsing here
-        } /*else {
-        implement check for errors as empty json
-            error()
-        }*/
-    }
-
-    fun showList(users : List<User>, listOfUsersView: TextView) {
-
-        val listGotStringed = users.joinToString("\n") { user ->
-            "ID: ${user.id} Firstname: ${user.firstName}"
+        } else {
+            //
+            Log.d("TAG", "JSON is null")
         }
-        listOfUsersView?.text = listGotStringed
-
     }
 }
