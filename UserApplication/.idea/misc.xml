@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ylilu/AndroidStudioProjects/UserApplication/app/src/main/res/drawable/ic_baseline_delete_forever_24.xml" value="0.12" />
+        <entry key="..\:/Users/ylilu/AndroidStudioProjects/UserApplication/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/ylilu/AndroidStudioProjects/UserApplication/app/src/main/res/layout/activity_second.xml" value="0.13903985507246377" />
         <entry key="..\:/Users/ylilu/AndroidStudioProjects/UserApplication/app/src/main/res/layout/content_scrolling.xml" value="0.13903985507246377" />
-        <entry key="..\:/Users/ylilu/AndroidStudioProjects/UserApplication/app/src/main/res/layout/item_user_layout.xml" value="0.11354166666666667" />
+        <entry key="..\:/Users/ylilu/AndroidStudioProjects/UserApplication/app/src/main/res/layout/item_user_layout.xml" value="0.264" />
+        <entry key="..\:/Users/ylilu/AndroidStudioProjects/UserApplication/app/src/main/res/layout/layout_user_info.xml" value="0.15416666666666667" />
       </map>
     </option>
   </component>

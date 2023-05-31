@@ -19,4 +19,14 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
 
+    <Button
+        android:layout_centerHorizontal="true"
+        android:id="@+id/addUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add user"
+        android:textColor="#000000"
+        android:alpha="0.8"/>
+
+
 </RelativeLayout>

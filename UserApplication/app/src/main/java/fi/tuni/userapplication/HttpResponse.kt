@@ -2,35 +2,41 @@ package fi.tuni.userapplication
 
 
 import android.content.Context
-import android.util.Log
+import android.widget.Toast
 import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.VolleyLog
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.google.gson.annotations.SerializedName
 
+/**
+ * @author by Matias Yliluoma
+ * @param context HttpResponse needs the context
+ * in order to get Toast texts incase of errors
+ * to show it on UI and for Volley http requests
+ */
 class HttpResponse(private val context: Context) {
+    /**
+     * fetchAll gets called on MainActivity
+     * Fetches all users from dummyjson.com
+     * @param callback is needed here to provide
+     * it back for main activity
+     */
     fun fetchAll(callback: (UserList) -> Unit) {
-// Volley httpclient to take make GET
-// request on dummyjson.com on all users
         val url = "https://dummyjson.com/users"
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
             { response ->
                 val jsonResponse : String = response.toString()
-               // var user = UserModelClass(0, "")
+
                 val userList = UserList.fromJson(jsonResponse)
-                // Access the users list
                 callback(userList)
-                // Logs all the users
-                Log.d(VolleyLog.TAG, "response: $userList")
             },
-            // For possible errors
             { error ->
-                // If time will do proper UI alert if
-                // no connection
-                Log.d(VolleyLog.TAG,"Error: ${error.networkResponse?.statusCode}, ${error.message}")
+                // error handling, ui notification
+                val toast = Toast.makeText(context,
+                    "${error.networkResponse?.statusCode}, " +
+                            "${error.message} Check your internet connection",
+                    Toast.LENGTH_LONG)
+                toast.show()
             }
         )
 
@@ -39,24 +45,34 @@ class HttpResponse(private val context: Context) {
         requestQueue.add(jsonObjectRequest) // Adds the request to the queue
         requestQueue.start() // Starts the queue
     }
+    /**
+     * fetchByText gets called on MainActivity
+     * Fetches wanted user from dummyjson.com
+     *
+     *
+     * @param callback is needed here to provide
+     * it back for main activity
+     * @param searchText is a String from MainActivity to
+     * fill the GET request's url to get one user
+     *
+     */
     fun fetchByText(searchText: String, callback: (UserList) -> Unit) {
+
         val url2 = "https://dummyjson.com/users/search?q=$searchText"
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url2, null,
             { response ->
                 val jsonResponse : String = response.toString()
-                // var user = UserModelClass(0, "")
                 val userList = UserList.fromJson(jsonResponse)
-                // Access the users list
                 callback(userList)
-                // Logs all the users
-                Log.d(VolleyLog.TAG, "response: $userList")
             },
-            // For possible errors
             { error ->
-                // If time will do proper UI alert if
-                // no connection
-                Log.d(VolleyLog.TAG,"Error: ${error.networkResponse?.statusCode}, ${error.message}")
+                // error handling, ui notification
+                val toast = Toast.makeText(context,
+                    "${error.networkResponse?.statusCode}," +
+                            " ${error.message} Check your internet connection",
+                    Toast.LENGTH_LONG)
+                toast.show()
             }
         )
 

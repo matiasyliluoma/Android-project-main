@@ -8,30 +8,43 @@
     android:orientation="vertical"
     android:background="#fffafa">
 
-
-    <EditText
-        android:id="@+id/search_by_text"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:inputType="text"
-        android:textColor="#000000"/>
-
-    <Button
-        android:id="@+id/fetchOne"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search.."
-        android:textColor="#8b7765"
-        android:background="#8470ff"/>
+        android:orientation="horizontal"
+        android:padding="12dp">
+        <EditText
+            android:id="@+id/search_by_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:hint="Search by firstname"
+            android:textColorHint="#7b68ee"
+            android:inputType="text"
+            android:textColor="#000000"
+            android:padding="12dp" />
 
+        <Button
+            android:id="@+id/fetchOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Search.."
+            android:textColor="#000000"
+            android:background="#8470ff"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
     <Button
         android:id="@+id/fetchAll"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Get all users"
-        android:textColor="#8b7765"
-        android:background="#8470ff"/>
-
+        android:textColor="#000000"
+        android:background="#8470ff"
+        android:layout_gravity="end"/>
+    </LinearLayout>
 
 
 
